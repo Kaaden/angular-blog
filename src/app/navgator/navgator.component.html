@@ -1,3 +1,5 @@
-<p>
-  navgator works!
-</p>
+<div class="nav" [ngClass]="{true:'nav-sel'}[isDon]">
+  <ul class="nav-right">
+    <li *ngFor="let item of nav">{{item}}</li>
+  </ul>
+</div>

@@ -1,4 +1,4 @@
-export class BgAvatar {
-    isok:boolean;
-    url: string;
+export class Config {
+    title:string;
+    desc:string
 }
