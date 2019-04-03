@@ -1,4 +1,5 @@
 export class Config {
     title:string;
-    desc:string
+    desc:string;
+    bg:string;
 }

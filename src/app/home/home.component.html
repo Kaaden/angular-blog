@@ -1,11 +1,5 @@
 <div class="home">
-    <div id="home-bg" class="home-bg" [style.background-image]="'url(' + BgImg+ ')'">
-        <div class="home-title">
-            <div>{{HomeConfig.title}}</div>
-            <div>{{HomeConfig.desc}}</div>
-        </div>
-        <i nz-icon nzType="down" nzTheme="outline" class="home-down"></i>
-    </div>
+    <app-head-bg></app-head-bg>
     <div class="home-main">
         <app-list></app-list>
     </div>

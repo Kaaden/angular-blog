@@ -1,0 +1,9 @@
+<nz-spin nzSimple  [nzIndicator]="indicatorTemplate"  [nzSpinning]="!pageConfig.bg" >
+  <div id="head-bg" ng-cloak class="head-bg" [style.background-image]="'url(' + pageConfig.bg+ ')'">
+    <div class="head-title">
+      <div>{{pageConfig.title}}</div>
+      <div>{{pageConfig.desc}}</div>
+    </div>
+    <i nz-icon nzType="down" nzTheme="outline" class="head-down"></i>
+  </div>
+</nz-spin>

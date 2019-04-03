@@ -2,12 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from "./home/home.component"
 import { AboutComponent } from "./about/about.component"
+
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 const routes: Routes = [
-  { path: "",component: HomeComponent },
+  { path: "", component: HomeComponent },
   { path: "about", component: AboutComponent }
 ]
 @NgModule({
   exports: [RouterModule],
-  imports: [RouterModule.forRoot(routes)]
+  imports: [RouterModule.forRoot(routes)],
+
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },//配置hash
+  ]
 })
 export class AppRoutingModule { }

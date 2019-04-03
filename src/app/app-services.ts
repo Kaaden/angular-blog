@@ -22,7 +22,6 @@ class Service {
     providedIn: 'root',
 })
 export class AppService {
-
     constructor(private http: HttpClient) { }
 
     getBing(): Observable<Service> {
