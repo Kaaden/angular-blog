@@ -1,3 +1,16 @@
-<p>
-  synopsis works!
-</p>
+<div class="syno">
+
+  <div class="syno-classify">
+    <div class="syno-classify-title">CLASSIFCATION</div>
+    <div class="syno-classify-list">
+      <nz-tag *ngFor="let item of list" class="item">{{item}}</nz-tag>
+    </div>
+  </div>
+
+  <nz-card nzHoverable [nzCover]="coverTemplate">
+    <nz-card-meta nzTitle="Europe Street beat" nzDescription="{{User.description}}"></nz-card-meta>
+  </nz-card>
+  <ng-template #coverTemplate>
+    <img alt="example" src="{{User.logo}}" />
+  </ng-template>
+</div>
