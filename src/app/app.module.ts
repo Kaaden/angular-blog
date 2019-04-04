@@ -17,6 +17,7 @@ import { ListComponent } from "./list/list.component";
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeadBgComponent } from "./head-bg/head-bg.component";
+import { SynopsisComponent } from './synopsis/synopsis.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HeadBgComponent } from "./head-bg/head-bg.component";
     AboutComponent,
     NavgatorComponent,
     ListComponent,
-    HeadBgComponent
+    HeadBgComponent,
+    SynopsisComponent
   ],
   imports: [
     BrowserModule,
