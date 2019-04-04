@@ -1,6 +1,7 @@
 <div class="syno">
 
   <div class="syno-classify">
+    <i nz-icon nzType="github" nzTheme="outline"></i>
     <div class="syno-classify-title">CLASSIFCATION</div>
     <div class="syno-classify-list">
       <nz-tag *ngFor="let item of list" class="item">{{item}}</nz-tag>
@@ -8,9 +9,23 @@
   </div>
 
   <nz-card nzHoverable [nzCover]="coverTemplate">
-    <nz-card-meta nzTitle="Europe Street beat" nzDescription="{{User.description}}"></nz-card-meta>
+    <nz-card-meta [nzDescription]="coverTempMain"></nz-card-meta>
   </nz-card>
+
   <ng-template #coverTemplate>
     <img alt="example" src="{{User.logo}}" />
   </ng-template>
+
+  <ng-template #coverTempMain>
+    <span>{{User.description}}</span>
+
+  </ng-template>
+
+  <!-- <ng-template #actionSetting>
+    <i nz-icon nzType="github" nzTheme="outline"></i>
+  </ng-template>
+  <ng-template #actionEdit>
+    <i nz-icon nzType="desktop" nzTheme="outline"></i>
+  </ng-template> -->
+
 </div>
