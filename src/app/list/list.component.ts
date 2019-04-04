@@ -39,8 +39,8 @@ export class ListComponent implements OnInit {
   onScroll(e) {
     let body = document.documentElement;
     let scrollTop = body.scrollTop;
-    let scrollBottom = body.scrollHeight - body.clientHeight - 100;
-    if (scrollTop > scrollBottom) {
+    let scrollBottom = body.scrollHeight - body.clientHeight;
+    if (scrollTop >= scrollBottom) {
       if (!this.fetch) {
         this.fetch = true;
         this.page = this.page + 1;
