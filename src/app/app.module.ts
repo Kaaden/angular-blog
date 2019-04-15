@@ -10,7 +10,7 @@ import { HeadBgComponent } from "./app-component/component-head/component-head.c
 import { ListComponent } from "./app-component/component-list/component-list.component";
 import { NavgatorComponent } from "./app-component/component-nav/component-nav.component";
 import { UserComponent } from "./app-component/component-user/component-user.component";
-//Page
+//Page test
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./app-about/app-about.component";
 import { AppComponent } from "./app.component";
