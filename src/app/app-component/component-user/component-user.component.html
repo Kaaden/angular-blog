@@ -10,7 +10,7 @@
   <div class="syno-classify">
     <div class="syno-classify-title">ABOUT ME</div>
     <nz-card nzHoverable [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit]">
-      <nz-skeleton [nzActive]="true" [nzLoading]="loading" >
+      <nz-skeleton [nzActive]="true" [nzLoading]="loading">
         <nz-card-meta [nzDescription]="coverTempMain"></nz-card-meta>
       </nz-skeleton>
     </nz-card>
@@ -21,7 +21,7 @@
 
 
   <ng-template #coverTemplate>
-    <img alt="example" src="{{User.logo}}" />
+    <img style="height: 3rem;" alt="example" src="{{User.logo}}" />
   </ng-template>
 
   <ng-template #coverTempMain>

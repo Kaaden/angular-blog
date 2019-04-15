@@ -12,9 +12,13 @@ export class UserComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit() {
+    window.onbeforeunload = function (event) {
+      window.sessionStorage.clear()
+    }
     this.getTags();
     this.getUser();
   }
+
   getTags(): void {
     this.appService.getTags().subscribe(
       data => {
@@ -28,12 +32,17 @@ export class UserComponent implements OnInit {
     );
   }
   getUser(): void {
-
+    let user = window.sessionStorage.getItem("user")
+    if (user) {
+      this.User = JSON.parse(user)
+      this.loading = false
+      return
+    }
     this.appService.getUser().subscribe(
       data => {
         if (data.isok) {
           this.User = data.data;
-
+          window.sessionStorage.setItem("user", JSON.stringify(data.data))
         }
         this.loading = false
       },
@@ -43,4 +52,6 @@ export class UserComponent implements OnInit {
       }
     );
   }
+
+
 }
