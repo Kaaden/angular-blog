@@ -11,7 +11,7 @@ import { ListComponent } from "./app-component/component-list/component-list.com
 import { NavgatorComponent } from "./app-component/component-nav/component-nav.component";
 import { UserComponent } from "./app-component/component-user/component-user.component";
 //Page
-import { HomeComponent } from "./home/home.component";
+import { HomeComponent } from "./app-page/page-home/page-home.component";
 import { AboutComponent } from "./app-about/app-about.component";
 import { AppComponent } from "./app.component";
 //配置antd
