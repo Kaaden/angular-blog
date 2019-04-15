@@ -17,7 +17,7 @@ export class HeadBgComponent implements OnInit {
   constructor(
     private appService: AppService,
     private location: PlatformLocation
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getPagePre();
@@ -72,12 +72,12 @@ export class HeadBgComponent implements OnInit {
       case "#/about":
         title = data.aboutitle;
         desc = data.aboutlevel;
-        bg = data.aboutImg;
+        bg = data.aboutImg || "http://kaaden.orrzt.com/public/uploads/8c23f4a2b2baf68c6c6c020542696629.jpg";
         break;
       case "#/tag":
         title = data.tagstitle;
         desc = data.tagslevel;
-        bg = data.tagsImg;
+        bg = data.tagsImg || "http://kaaden.orrzt.com/public/uploads/8c23f4a2b2baf68c6c6c020542696629.jpg";
         break;
     }
     this.pageConfig = {

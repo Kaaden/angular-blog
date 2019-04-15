@@ -8,7 +8,8 @@ import { AppService } from "../app-services";
 export class SynopsisComponent implements OnInit {
   list: string[] = [];
   User: any = "";
-  constructor(private appService: AppService) {}
+  loading: boolean = true;
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
     this.getTags();
@@ -27,14 +28,18 @@ export class SynopsisComponent implements OnInit {
     );
   }
   getUser(): void {
+
     this.appService.getUser().subscribe(
       data => {
         if (data.isok) {
           this.User = data.data;
+
         }
+        this.loading = false
       },
       (error: Error) => {
         this.User = "";
+        this.loading = false
       }
     );
   }
