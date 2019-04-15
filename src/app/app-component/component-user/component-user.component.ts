@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { AppService } from "../app-services";
+import { AppService } from "../../app-services";
 @Component({
-  selector: "app-synopsis",
-  templateUrl: "./synopsis.component.html",
-  styleUrls: ["./synopsis.component.less"]
+  selector: "app-component-user",
+  templateUrl: "./component-user.component.html",
+  styleUrls: ["./component-user.component.less"]
 })
-export class SynopsisComponent implements OnInit {
+export class UserComponent implements OnInit {
   list: string[] = [];
   User: any = "";
   loading: boolean = true;

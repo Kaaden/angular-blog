@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-import { AppService } from "../app-services";
+import { AppService } from "../../app-services";
 import { NzMessageService } from "ng-zorro-antd";
 @Component({
-  selector: "app-list",
-  templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.less"]
+  selector: "app-component-list",
+  templateUrl: "./component-list.component.html",
+  styleUrls: ["./component-list.component.less"]
 })
 export class ListComponent implements OnInit {
   list: any[] = [];

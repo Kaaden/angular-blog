@@ -1,9 +1,9 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { Router } from "@angular/router";
 @Component({
-  selector: "app-navgator",
-  templateUrl: "./navgator.component.html",
-  styleUrls: ["./navgator.component.less"]
+  selector: "app-component-nav",
+  templateUrl: "./component-nav.component.html",
+  styleUrls: ["./component-nav.component.less"]
 })
 export class NavgatorComponent implements OnInit {
   isDon: boolean = false;

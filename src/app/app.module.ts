@@ -3,31 +3,32 @@ import { NgModule } from "@angular/core";
 import { ScrollDispatchModule } from "@angular/cdk/scrolling";
 // http模块
 import { HttpClientModule } from "@angular/common/http";
-// 路由
+// Router
 import { AppRoutingModule } from "./app-routing.module";
-
-//组件
+//component
+import { HeadBgComponent } from "./app-component/component-head/component-head.component";
+import { ListComponent } from "./app-component/component-list/component-list.component";
+import { NavgatorComponent } from "./app-component/component-nav/component-nav.component";
+import { UserComponent } from "./app-component/component-user/component-user.component";
+//Page
 import { HomeComponent } from "./home/home.component";
-import { AboutComponent } from "./about/about.component";
+import { AboutComponent } from "./app-about/app-about.component";
 import { AppComponent } from "./app.component";
-import { NavgatorComponent } from "./navgator/navgator.component";
-import { ListComponent } from "./list/list.component";
-
 //配置antd
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HeadBgComponent } from "./head-bg/head-bg.component";
-import { SynopsisComponent } from './synopsis/synopsis.component';
 
 @NgModule({
   declarations: [
+    HeadBgComponent,
+    ListComponent,
+    UserComponent,
+    NavgatorComponent,
+
+
     HomeComponent,
     AppComponent,
     AboutComponent,
-    NavgatorComponent,
-    ListComponent,
-    HeadBgComponent,
-    SynopsisComponent
   ],
   imports: [
     BrowserModule,
@@ -40,4 +41,4 @@ import { SynopsisComponent } from './synopsis/synopsis.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
