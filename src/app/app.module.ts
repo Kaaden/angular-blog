@@ -10,11 +10,11 @@ import { HeadBgComponent } from "./app-component/component-head/component-head.c
 import { ListComponent } from "./app-component/component-list/component-list.component";
 import { NavgatorComponent } from "./app-component/component-nav/component-nav.component";
 import { UserComponent } from "./app-component/component-user/component-user.component";
-//Page test
+//Page
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./app-about/app-about.component";
 import { AppComponent } from "./app.component";
-//配置antd e
+//配置antd
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
