@@ -1,6 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { ScrollDispatchModule } from "@angular/cdk/scrolling";
+
+import { AppComponent } from "./app.component";
 // http模块
 import { HttpClientModule } from "@angular/common/http";
 // Router
@@ -12,8 +14,7 @@ import { NavgatorComponent } from "./app-component/component-nav/component-nav.c
 import { UserComponent } from "./app-component/component-user/component-user.component";
 //Page
 import { HomeComponent } from "./app-page/page-home/page-home.component";
-import { AboutComponent } from "./app-about/app-about.component";
-import { AppComponent } from "./app.component";
+import { AboutComponent } from "./app-page/page-about/page-about.component";
 //配置antd
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
