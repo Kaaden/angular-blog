@@ -14,7 +14,7 @@ import { UserComponent } from "./app-component/component-user/component-user.com
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./app-about/app-about.component";
 import { AppComponent } from "./app.component";
-//配置antd
+//配置antd e
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
