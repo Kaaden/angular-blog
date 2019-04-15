@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { AppService } from "../app-services";
-import { Config } from "../app-main";
+import { AppService } from "../../app-services";
+import { Config } from "../../app-main";
 import { PlatformLocation } from "@angular/common";
 @Component({
-  selector: "app-head-bg",
-  templateUrl: "./head-bg.component.html",
-  styleUrls: ["./head-bg.component.less"]
+  selector: "app-component-head",
+  templateUrl: "./component-head.component.html",
+  styleUrls: ["./component-head.component.less"]
 })
 export class HeadBgComponent implements OnInit {
   BgImg: string;
