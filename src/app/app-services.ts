@@ -6,13 +6,14 @@ const httpOptions = {
     "Content-Type": "application/x-www-form-urlencoded"
   })
 };
-const Host = "http://kaaden.orrzt.com/";
+const Host: string = "http://kaaden.orrzt.com/";
 const addr = {
   bing: Host + "getBing",
   config: Host + "getConfig",
   content: Host + "getContent",
   tag: Host + "getTags",
-  user: Host + "getUser"
+  user: Host + "getUser",
+  detail: Host + "getDetail"
 };
 // 定义请求类型
 class Service {
@@ -26,7 +27,7 @@ class Service {
   providedIn: "root"
 })
 export class AppService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getBing(): Observable<Service> {
     return this.http.post<Service>(addr.bing, "", httpOptions);
@@ -46,5 +47,8 @@ export class AppService {
   }
   getUser() {
     return this.http.post<Service>(addr.user, "");
+  }
+  getDetail(id: number) {
+    return this.http.post<Service>(addr.detail, { id })
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { AppService } from "../../app-services";
 import { NzMessageService } from "ng-zorro-antd";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-component-list",
   templateUrl: "./component-list.component.html",
@@ -10,28 +11,39 @@ export class ListComponent implements OnInit {
   list: any[] = [];
   page: number = 1;
   fetch: boolean = false;
+  loading: boolean = true;
   constructor(
     private appService: AppService,
-    private message: NzMessageService
-  ) {}
+    private message: NzMessageService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getContent(this.page);
   }
 
+  goDetail(id:number): void {
+    this.router.navigate(["detail"], {
+      queryParams: {id}
+    })
+  }
+  
   getContent(page: number): void {
     this.appService.getContent(page).subscribe(
       data => {
         if (data.isok) {
           this.list = [...this.list, ...data.list];
           this.fetch = false;
+          this.loading = false
         } else {
           this.fetch = true;
+          this.loading = false
         }
       },
       (error: Error) => {
         this.message.create("error", "请求错误");
         this.fetch = false;
+        this.loading = false
       }
     );
   }

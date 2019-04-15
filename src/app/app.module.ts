@@ -15,6 +15,8 @@ import { UserComponent } from "./app-component/component-user/component-user.com
 //Page
 import { HomeComponent } from "./app-page/page-home/page-home.component";
 import { AboutComponent } from "./app-page/page-about/page-about.component";
+import { PageDetailComponent } from './app-page/page-detail/page-detail.component';
+
 //配置antd
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -30,6 +32,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     HomeComponent,
     AppComponent,
     AboutComponent,
+    PageDetailComponent,
   ],
   imports: [
     BrowserModule,
