@@ -22,5 +22,5 @@
 </ul>
 <div class="list-loading">
   <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;"></i> </ng-template>
-  <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSpinning]="!fetch"> </nz-spin>
+  <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSpinning]="list.length&&!fetch"> </nz-spin>
 </div>

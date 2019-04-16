@@ -1,6 +1,6 @@
 
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 const httpOptions = {
   headers: new HttpHeaders({
@@ -51,5 +51,8 @@ export class AppService {
   }
   getDetail(id: number) {
     return this.http.post<Service>(addr.detail, { id })
+  }
+  getAccess_Token(code) {
+    return this.http.post<Service>(`https://github.com/login/oauth/access_token?client_secret=27086c9a75f05e8076be2551a39506e4a71b36ce&client_id=a81d2df07a5f4265c4a0&code=${code}`, null, httpOptions)
   }
 }
