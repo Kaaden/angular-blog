@@ -1,38 +1,63 @@
 .syno {
   width: 100%;
 
-  .icon {
-    font-size: 0.24rem;
-  }
+  .syno-user {
+    display       : flex;
+    flex-direction: column;
+    box-shadow    : 0 0 10px #e1e4e8;
 
-  .syno-classify:last-child {
-    border-bottom: none;
-  }
-
-  .syno-classify {
-    width         : 100%;
-    border-bottom : .5px solid #eee;
-    padding-bottom: .3rem;
-    margin-bottom : .3rem;
-
-    .syno-classify-title {
-      color        : #0269c8;
-      cursor       : pointer;
-      font-family  : "beyno";
-      font-weight  : 600;
-      margin-bottom: 0.3rem;
+    >img {
+      width : 100%;
+      height: 230px;
     }
 
-    .syno-classify-list {
-      width    : 100%;
-      display  : flex;
-      flex-wrap: wrap;
+    .syno-main {
+      padding: 0.1rem .2rem;
 
-      .item {
-        margin-bottom: .08rem
+      .syno-user-name {
+        font-weight: 600;
+        font-size  : 0.22rem;
+        color      : #24292e;
+      }
+
+      .syno-user-desc {
+        font-size    : .14rem;
+        font-family  : -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+        line-height  : 1.5;
+        margin-bottom: .1rem;
+        color        : #24292e;
+      }
+
+      .syno-user-item {
+        margin-bottom: .1rem;
+        color        : #24292e;
+        font-size    : .14rem;
+
+        >i {
+          margin-right: 0.1rem
+        }
+      }
+
+      .syno-info-bottom {
+        width          : 100%;
+        display        : flex;
+        justify-content: space-between;
+        align-items    : center;
+
+        .icon {
+          font-size: 0.28rem;
+
+          .icon-item {
+            color       : #9EABB3;
+            margin-right: 0.3rem;
+            cursor      : pointer;
+          }
+
+          .icon-item:hover {
+            color: #1890ff
+          }
+        }
       }
     }
-
-    
   }
 }

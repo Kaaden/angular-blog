@@ -1,42 +1,25 @@
 <div class="syno">
+  <div class="syno-user">
+    <img src="{{User.logo}}" />
+    <div class="syno-main">
+      <div class="syno-user-name">{{User.user}}</div>
+      <div class="syno-user-desc">{{User.description}}</div>
+      <div class="syno-user-item"><i nz-icon nzType="mail" nzTheme="outline"></i>794102675@qq.com</div>
+      <div class="syno-user-item"><i nz-icon nzType="environment" nzTheme="outline"></i>guangzhou</div>
+      <div class="syno-info-bottom">
 
-  <div class="syno-classify">
-    <div class="syno-classify-title">CLASSIFCATION</div>
-    <div class="syno-classify-list">
-      <nz-tag *ngFor="let item of list" class="item">{{item}}</nz-tag>
+        <p class="icon">
+          <a href="https://github.com/Kaaden" target="_blank"><i class="icon-item" nz-icon nzType="github"
+              nzTheme="outline"></i></a>
+          <a href="https://weibo.com/2332838831/profile?topnav=1&wvr=6&is_all=1" target="_blank"><i class="icon-item"
+              nz-icon nzType="weibo-circle" nzTheme="outline"></i></a>
+          <a href="http://kaaden.orrzt.com/admin#/" target="_blank"> <i class="icon-item" nz-icon
+              nzType="codepen-circle" nzTheme="outline"></i></a>
+        </p>
+      </div>
     </div>
   </div>
 
-  <div class="syno-classify">
-    <div class="syno-classify-title">ABOUT ME</div>
-    <nz-card nzHoverable [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit]">
-      <nz-skeleton [nzActive]="true" [nzLoading]="loading">
-        <nz-card-meta [nzDescription]="coverTempMain"></nz-card-meta>
-      </nz-skeleton>
-    </nz-card>
 
-  </div>
-
-
-
-
-  <ng-template #coverTemplate>
-    <img style="height: 3rem;" alt="example" src="{{User.logo}}" />
-  </ng-template>
-
-  <ng-template #coverTempMain>
-    <span>{{User.description}}</span>
-  </ng-template>
-
-  <ng-template #actionSetting>
-    <a href="https://github.com/Kaaden" target="_blank">
-      <i nz-icon nzType="github" nzTheme="outline" class="icon"></i>
-    </a>
-  </ng-template>
-  <ng-template #actionEdit>
-    <a href="http://kaaden.orrzt.com/admin" target="_blank">
-      <i nz-icon nzType="codepen-circle" nzTheme="outline" class="icon"></i>
-    </a>
-  </ng-template>
 
 </div>

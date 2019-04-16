@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +17,9 @@ export class AppComponent {
     let fontsize = deviceWidth / 19.2;
     document.documentElement.style.fontSize = `${fontsize}px`
     console.log(document.documentElement.style.fontSize)
+  }
+  @HostListener("window:resize", ["$event"])
+  resizeBy(e){
+    this.fontSize()
   }
 }
