@@ -73,4 +73,25 @@ export class PageDetailComponent implements OnInit {
       }
     );
   }
+  login() {
+    let key = this.makeKey()
+    window.sessionStorage.setItem("key", key)
+    window.open('https://github.com/login/oauth/authorize\?client_id=a81d2df07a5f4265c4a0', '', 'width=600,height=500,left=10, top=10,toolbar=no, status=no, menubar=no, resizable=yes, scrollbars=yes');
+  }
+  makeKey() {
+    const str = "qwertyuiopasdfghjklzxcvbnm0123456789QWERTYUIOPASDFGHJKLZXCVBNM"
+    const len = str.length
+    let _d = new Date()
+    let strMath = ""
+    for (let i = 0; i < 4; i++) {
+      let math = Math.floor(Math.random() * len - 1)
+      if (math < 0) {
+        math = 0
+      }
+      strMath += str.substr(math, 1)
+    }
+    let dataMath = _d.getTime() + strMath
+    return dataMath
+  }
+
 }
