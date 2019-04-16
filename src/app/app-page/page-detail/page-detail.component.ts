@@ -39,7 +39,7 @@ export class PageDetailComponent implements OnInit {
           this.backImg = data.data.img
 
           this.category = data.data.category
-          this.content = data.data.content
+          this.content = data.data.content.replace(/↵/g, "");
 
           this.time = data.data.time
           this.authors = data.data.authors
