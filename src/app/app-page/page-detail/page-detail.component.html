@@ -20,9 +20,23 @@
     <div [innerHTML]="content"></div>
   </main>
 
-  <footer class="detail-footer">
+  <footer class="detail-footer" *ngIf="!loading">
     <div class="detail-user">
       <img src="{{User.logo}}"/>
+    </div>
+    <div class="detail-info">
+      <div class="detail-info-top">
+        <p class="name">{{User.user}}</p>
+        <p>The Front-end development</p>
+      </div>
+      <div class="detail-info-bottom">
+        <p class="detail-href"><i nz-icon nzType="paper-clip" nzTheme="outline"></i><a href="http://kaaden.orrzt.com">http://kaaden.orrzt.com</a></p>
+        <p class="icon">
+          <i nz-icon nzType="github" nzTheme="outline"></i>
+          <i nz-icon nzType="weibo-circle" nzTheme="outline"></i>
+          <i nz-icon nzType="codepen-circle" nzTheme="outline"></i>
+        </p>
+      </div>
     </div>
   </footer>
 

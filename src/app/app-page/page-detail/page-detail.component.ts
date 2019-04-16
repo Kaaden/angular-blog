@@ -28,7 +28,6 @@ export class PageDetailComponent implements OnInit {
       let id = query.id || 0
       if (id) {
         this.getDetail(id)
-        this.getUser();
       }
     });
   }
@@ -44,6 +43,7 @@ export class PageDetailComponent implements OnInit {
 
           this.time = data.data.time
           this.authors = data.data.authors
+          this.getUser();
         }
         this.loading = false
       }),
