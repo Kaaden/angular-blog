@@ -37,7 +37,7 @@ export class HeadBgComponent implements OnInit {
   getBings(): void {
     this.appService.getBing().subscribe(
       (data: any) => {
-        this.pageConfig.bg = data.isok ? data.url : "";
+        this.pageConfig.bg = data.isok ? data.data : "";
       },
       (error: Error) => {
         this.pageConfig.bg =

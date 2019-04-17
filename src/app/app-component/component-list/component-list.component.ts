@@ -32,7 +32,7 @@ export class ListComponent implements OnInit {
     this.appService.getContent(page).subscribe(
       data => {
         if (data.isok) {
-          this.list = [...this.list, ...data.list];
+          this.list = [...this.list, ...data.data];
           this.fetch = false;
           this.loading = false
         } else {

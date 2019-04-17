@@ -20,7 +20,6 @@ const addr = {
 };
 // 定义请求类型
 class Service {
-  url: string;
   isok: boolean;
   data: any;
   list: any[];
