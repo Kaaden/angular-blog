@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { AppService } from "../../app-services"
+import { NzMessageService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-page-detail',
   templateUrl: './page-detail.component.html',
@@ -15,9 +16,13 @@ export class PageDetailComponent implements OnInit {
   backImg: string = ""
   loading: boolean = true
   User: any = ""
+  interId: any = ""
+  gitId: string = ""
+  gitUser: any = ""
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: AppService
+    private service: AppService,
+    private message: NzMessageService
   ) { }
 
   ngOnInit() {
@@ -28,8 +33,38 @@ export class PageDetailComponent implements OnInit {
       let id = query.id || 0
       if (id) {
         this.getDetail(id)
+        this.getUserId()
       }
     });
+  }
+  ngOnDestroy() {
+    clearInterval(this.interId)
+  }
+  getUserId(): void {
+    clearInterval(this.interId)
+    let id = window.localStorage.getItem("gitId")
+    if (!id) {
+      this.interId = setInterval(() => {
+        let gid = window.localStorage.getItem("gitId")
+        if (gid) {
+          this.gitId = gid
+          clearInterval(this.interId)
+        }
+      }, 100)
+    } else {
+      this.gitId = id
+      this.service.getGit(id).subscribe(
+        (data) => {
+          if (data.isok) {
+            this.gitUser = data.data
+          }
+        },
+        (error: Error) => {
+          this.gitUser = ""
+          this.gitId = ""
+          this.message.error("请重新登陆")
+        })
+    }
   }
   getDetail(id: number): void {
     this.service.getDetail(id).subscribe(
@@ -76,6 +111,7 @@ export class PageDetailComponent implements OnInit {
   login() {
     let key = this.makeKey()
     window.sessionStorage.setItem("key", key)
+    window.localStorage.clear()
     window.open('https://github.com/login/oauth/authorize\?client_id=a81d2df07a5f4265c4a0', '', 'width=600,height=500,left=10, top=10,toolbar=no, status=no, menubar=no, resizable=yes, scrollbars=yes');
   }
   makeKey() {

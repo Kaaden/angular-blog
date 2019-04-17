@@ -16,13 +16,13 @@ const addr = {
   tag: Host + "getTags",
   user: Host + "getUser",
   detail: Host + "getDetail",
-  token: Host + "getToken_access"
+  token: Host + "getToken_access",
+  gitUser: Host + "getGitUser"
 };
 // 定义请求类型
 class Service {
   isok: boolean;
   data: any;
-  list: any[];
 }
 
 @Injectable({
@@ -55,7 +55,9 @@ export class AppService {
     return this.http.post<Service>(addr.detail, { id })
   }
   getAccess_Token(code: any, key: any) {
-    // `https://github.com/login/oauth/access_token?client_secret=27086c9a75f05e8076be2551a39506e4a71b36ce&client_id=a81d2df07a5f4265c4a0&code=${code}`/
     return this.http.post<Service>(addr.token, { code, key })
+  }
+  getGit(id:string) {
+    return this.http.post<Service>(addr.gitUser, { id })
   }
 }

@@ -20,7 +20,8 @@ export class PageLoginComponent implements OnInit {
     let code = m[1]
     if (code) {
       this.service.getAccess_Token(code, key).subscribe((data) => {
-        if (data) {
+        if (data.isok && data.data) {
+          window.localStorage.setItem("gitId", data.data)
           window.close()
         }
       })

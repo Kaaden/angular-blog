@@ -42,7 +42,8 @@
         </p>
       </div>
 
-      <a (click)="login()">登录即可评论</a>
+      <a (click)="login()" *ngIf="!gitId">登录即可评论</a>
+      <app-component-commit></app-component-commit>
     </div>
   </footer>
 

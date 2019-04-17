@@ -12,6 +12,7 @@ import { HeadBgComponent } from "./app-component/component-head/component-head.c
 import { ListComponent } from "./app-component/component-list/component-list.component";
 import { NavgatorComponent } from "./app-component/component-nav/component-nav.component";
 import { UserComponent } from "./app-component/component-user/component-user.component";
+import { commitComponent } from "./app-component/component-commit/component-commit.component";
 //Page
 import { HomeComponent } from "./app-page/page-home/page-home.component";
 import { AboutComponent } from "./app-page/page-about/page-about.component";
@@ -28,7 +29,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ListComponent,
     UserComponent,
     NavgatorComponent,
-
+    commitComponent,
 
     HomeComponent,
     AppComponent,
