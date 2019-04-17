@@ -1,3 +1,8 @@
-<div class="commit">
-    <div>评论</div>
+<a (click)="login()" *ngIf="!gitId">登录即可评论</a>
+<div class="commit" *ngIf="gitId">
+    <div class="commit-title">评论</div>
+    <div class="commit-input">
+        <nz-avatar nz-comment-avatar nzIcon="user"  [nzSize]="45" [nzSrc]="gitUser.avatar_url"></nz-avatar>
+        <input nz-input placeholder="输入点什么..." [(ngModel)]="value" />
+    </div>
 </div>

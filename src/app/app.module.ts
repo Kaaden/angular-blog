@@ -22,7 +22,7 @@ import { PageLoginComponent } from './app-page/page-login/page-login.component';
 //配置antd
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import { FormsModule } from '@angular/forms'
 @NgModule({
   declarations: [
     HeadBgComponent,
@@ -43,7 +43,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     HttpClientModule,
     NgZorroAntdModule,
     BrowserAnimationsModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
