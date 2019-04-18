@@ -1,7 +1,8 @@
 
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import qs from "qs"
 const httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/x-www-form-urlencoded"
@@ -38,26 +39,25 @@ export class AppService {
     return this.http.post<Service>(addr.config, { status: true }, httpOptions);
   }
   getContent(pageindex: number): Observable<Service> {
-
-    return this.http.post<Service>(addr.content, {
+    return this.http.post<Service>(addr.content, qs.stringify({
       status: 1,
       pageSize: 10,
       pageindex,
-    });
+    }), httpOptions)
   }
   getTags() {
-    return this.http.post<Service>(addr.tag, "");
+    return this.http.post<Service>(addr.tag, "", httpOptions);
   }
   getUser() {
-    return this.http.post<Service>(addr.user, "");
+    return this.http.post<Service>(addr.user, "", httpOptions);
   }
   getDetail(id: number) {
-    return this.http.post<Service>(addr.detail, { id })
+    return this.http.post<Service>(addr.detail, qs.stringify({ id }), httpOptions)
   }
   getAccess_Token(code: any, key: any) {
-    return this.http.post<Service>(addr.token, { code, key })
+    return this.http.post<Service>(addr.token, qs.stringify({ code, key }), httpOptions)
   }
-  getGit(id:string) {
-    return this.http.post<Service>(addr.gitUser, { id })
+  getGit(id: string) {
+    return this.http.post<Service>(addr.gitUser, qs.stringify({ id }), httpOptions)
   }
 }
