@@ -8,8 +8,8 @@ const httpOptions = {
     "Content-Type": "application/x-www-form-urlencoded"
   })
 };
-// const Host: string = "http://kaaden.orrzt.com/";
-const Host: string = "http://127.0.0.1:80/"
+const Host: string = "http://kaaden.orrzt.com:4000";
+// const Host: string = "http://127.0.0.1:4000/"
 const addr = {
   bing: Host + "getBing",
   config: Host + "getConfig",
