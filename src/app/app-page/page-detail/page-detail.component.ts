@@ -30,12 +30,15 @@ export class PageDetailComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(query => {
       let id = query.id || 0
       if (id) {
+        window.sessionStorage.setItem("contentId", id)
         this.getDetail(id)
-       
       }
     });
   }
-  
+  ngOnDestroy() {
+    window.sessionStorage.setItem("contentId", "")
+  }
+
   getDetail(id: number): void {
     this.service.getDetail(id).subscribe(
       (data => {
@@ -78,6 +81,6 @@ export class PageDetailComponent implements OnInit {
       }
     );
   }
- 
+
 
 }

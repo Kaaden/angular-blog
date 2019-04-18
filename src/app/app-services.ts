@@ -18,7 +18,9 @@ const addr = {
   user: Host + "getUser",
   detail: Host + "getDetail",
   token: Host + "getToken_access",
-  gitUser: Host + "getGitUser"
+  gitUser: Host + "getGitUser",
+  getComment: Host + "getComment",
+  addComment: Host + "addComment"
 };
 // 定义请求类型
 class Service {
@@ -59,5 +61,14 @@ export class AppService {
   }
   getGit(id: string) {
     return this.http.post<Service>(addr.gitUser, qs.stringify({ id }), httpOptions)
+  }
+  getComment(pageindex: number) {
+    return this.http.post<Service>(addr.getComment, qs.stringify({
+      pageSize: 10,
+      pageindex,
+    }), httpOptions)
+  }
+  addComment(para: any) {
+    return this.http.post<Service>(addr.addComment, qs.stringify({ ...para }), httpOptions)
   }
 }

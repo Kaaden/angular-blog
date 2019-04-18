@@ -2,7 +2,22 @@
 <div class="commit" *ngIf="gitId">
     <div class="commit-title">评论</div>
     <div class="commit-input">
-        <nz-avatar nz-comment-avatar nzIcon="user"  [nzSize]="45" [nzSrc]="gitUser.avatar_url"></nz-avatar>
-        <input nz-input placeholder="输入点什么..." [(ngModel)]="value" />
+        <nz-avatar style="flex-shrink:0" nz-comment-avatar nzIcon="user" [nzSize]="45" [nzSrc]="gitUser.avatar_url">
+        </nz-avatar>
+        <div class="commit-input-right">
+            <input nz-input placeholder="说点什么..." [(ngModel)]="value" [nzSize]="large"/>
+
+            <div class="commit-fun">
+                <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible"
+                    nzTrigger="click" nz-icon nzType="smile" nzTheme="outline"
+                    style="flex-shrink:0;font-size:0.24rem;color:#8a9aa9"></i>
+                <button nz-button nzType="primary" (click)="submit()">评论</button>
+            </div>
+        </div>
     </div>
 </div>
+<ng-template #icon>
+    <ul class="emoji">
+        <li *ngFor="let item of emojiArray" (click)="emojiClick(item)">{{item}}</li>
+    </ul>
+</ng-template>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from "../../app-services"
 import { NzMessageService } from 'ng-zorro-antd';
+import emoji from "../../emoji";
 @Component({
     selector: 'app-component-commit',
     templateUrl: './component-commit.component.html',
@@ -11,18 +12,65 @@ export class commitComponent implements OnInit {
     gitUser: any = ""
     interId: any = ""
     value: string = ""
+    visible: boolean = false
+    emojiArray: Array<string> = []
+    pageindex: number = 1
+    comment: Array<any> = []
+    contentId: string = ""
     constructor(
         private service: AppService,
         private message: NzMessageService
     ) { }
     ngOnInit() {
+        let contentId = window.sessionStorage.getItem("contentId")
+        if (contentId) {
+            this.contentId = contentId
+        }
         this.getUserId()
+        this.emojiDo()
+        this.getComment()
     }
     ngOnDestroy() {
         clearInterval(this.interId)
     }
+    showEmoji(): void {
+        this.visible = true
+    }
 
-    login() {
+    // 表情处理
+    emojiDo(): void {
+        this.emojiArray = Object.keys(emoji.EMOJI_MAP)
+    }
+    emojiClick(item): void {
+        this.value = this.value + item
+        this.visible = false
+    }
+    submit() {
+        if (!this.value) {
+            return
+        }
+        let user = this.gitUser
+        let para = {
+            userid: user.id,
+            name: user.name,
+            avatar: user.avatar_url,
+            contentId: this.contentId,
+            text: this.value
+        }
+        this.service.addComment(para).subscribe((data) => {
+            console.log(data)
+        })
+    }
+    // 获取评论列表
+    getComment() {
+        this.service.getComment(this.pageindex).subscribe((data) => {
+            if (data.isok) {
+                this.comment = data.data
+            }
+        })
+    }
+    //登陆
+    login(): void {
         let key = this.makeKey()
         window.sessionStorage.setItem("key", key)
         window.localStorage.clear()
