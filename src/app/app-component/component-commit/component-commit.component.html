@@ -1,19 +1,109 @@
-<a (click)="login()" *ngIf="!gitId">登录即可评论</a>
-<div class="commit" *ngIf="gitId">
-    <div class="commit-title">评论</div>
-    <div class="commit-input">
-        <nz-avatar style="flex-shrink:0" nz-comment-avatar nzIcon="user" [nzSize]="45" [nzSrc]="gitUser.avatar_url">
+<a (click)="login()" *ngIf="!gitId" style="margin-bottom:.3rem;display: block">登录即可评论</a>
+<div class="commit">
+    <div class="commit-title" (click)="onblur()">评论</div>
+    <div class="commit-input" *ngIf="gitId" (click)="onblur()">
+        <nz-avatar style="flex-shrink:0;margin-right:.2rem" nz-comment-avatar nzIcon="user" [nzSize]="40"
+            [nzSrc]="gitUser.avatar_url">
         </nz-avatar>
         <div class="commit-input-right">
-            <input nz-input placeholder="说点什么..." [(ngModel)]="value" [nzSize]="large"/>
+            <input nz-input placeholder="说点什么..." [(ngModel)]="value" [nzSize]="large" />
 
             <div class="commit-fun">
-                <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible"
+                <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible&&!replayIndex"
                     nzTrigger="click" nz-icon nzType="smile" nzTheme="outline"
                     style="flex-shrink:0;font-size:0.24rem;color:#8a9aa9"></i>
-                <button nz-button nzType="primary" (click)="submit()">评论</button>
+                <button nz-button nzType="primary" (click)="submit()" [nzLoading]="subLoading">评论</button>
             </div>
         </div>
+    </div>
+
+    <div class="commit-list" *ngIf="comment.length">
+        <!-- 评论 -->
+        <ul style="margin-bottom:.3rem">
+            <li *ngFor="let item of comment;let i = index" class="commit-list-item">
+                <nz-avatar nzIcon="user" [nzSrc]="item.avatar" style="flex-shrink:0"></nz-avatar>
+                <div class="commit-list-item-main">
+                    <span class="commit-item-name" (click)="onblur()">{{item.name}} <span class="commit-item-time"
+                            (click)="onblur()">{{item.time}}</span></span>
+                    <span class="commit-item-text" (click)="onblur()">{{item.text}}</span>
+                    <!-- 点赞 -->
+                    <div class="commit-item-func">
+                        <div class="commit-item-func-right">
+                            <i nz-icon nzType="like" nzTheme="outline" style="cursor: pointer"></i>
+                            <span style="margin-left:.1rem" *ngIf="item.dzcount">{{item.dzcount}}</span>
+                        </div>
+
+                        <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer"
+                            (click)="showReplay(i)"></i>
+                    </div>
+                    <!-- 输入框 -->
+                    <div class="commit-input-right commit-input-replay" *ngIf="replayIndex===i+1">
+                        <input nz-input placeholder="说点什么..." [(ngModel)]="replayValue" [nzSize]="small" autofocus />
+
+                        <div class="commit-fun">
+                            <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible"
+                                nzTrigger="click" nz-icon nzType="smile" nzTheme="outline"
+                                style="flex-shrink:0;font-size:0.18rem;color:#8a9aa9"></i>
+                            <button nz-button nzType="primary" (click)="replaySubmit(item)" [nzLoading]="subLoadingItem"
+                                [nzSize]="small">评论</button>
+                        </div>
+                    </div>
+
+
+                    <!-- 回评 -->
+                    <ul class="replay" *ngIf="item.replay.length">
+                        <li *ngFor="let r of item.replay;let j = index" class="replay-item">
+                            <nz-avatar nzIcon="user" [nzSrc]="r.comment_avatar" style="flex-shrink:0"></nz-avatar>
+                            <div class="replay-item-main">
+                                <span class="replay-item-name" (click)="onblur()">{{r.comment_name}}
+                                    回复 <span style="color:#406599">{{r.replay_name}}</span> : <span
+                                        class="commit-item-time" (click)="onblur()">{{r.time}}</span></span>
+                                <span class="commit-item-text" (click)="onblur()">{{r.comment_text}}</span>
+
+
+                                <div class="commit-item-func">
+                                    <div class="commit-item-func-right">
+                                        <i nz-icon nzType="like" nzTheme="outline" style="cursor: pointer"></i>
+                                        <span style="margin-left:.1rem" *ngIf="item.dzcount">{{r.dzcount}}</span>
+                                    </div>
+
+                                    <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer"
+                                        (click)="showNewRe(j,item.id)"></i>
+                                </div>
+
+                                <div class="commit-input-right commit-input-replay" style="background:#fafbfc"
+                                    *ngIf="r.comment_id===newReId&&newReIndex===j+1">
+                                    <input nz-input placeholder="说点什么..." [(ngModel)]="newValue" [nzSize]="small"
+                                        autofocus />
+
+                                    <div class="commit-fun">
+                                        <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible"
+                                            nzTrigger="click" nz-icon nzType="smile" nzTheme="outline"
+                                            style="flex-shrink:0;font-size:0.18rem;color:#8a9aa9"></i>
+                                        <button nz-button nzType="primary" (click)="newSubmit(r)"
+                                            [nzLoading]="subLoadingItem" [nzSize]="small">评论</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+                        </li>
+                    </ul>
+
+                </div>
+
+            </li>
+        </ul>
+
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSpinning]="loading" style="width:100%;text-align:center">
+        </nz-spin>
+
+        <a class="addMore" (click)="fetchMore()" *ngIf="hasMore">加载更多</a>
+
+
     </div>
 </div>
 <ng-template #icon>
@@ -21,3 +111,4 @@
         <li *ngFor="let item of emojiArray" (click)="emojiClick(item)">{{item}}</li>
     </ul>
 </ng-template>
+<ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;"></i> </ng-template>

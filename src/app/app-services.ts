@@ -20,7 +20,9 @@ const addr = {
   token: Host + "getToken_access",
   gitUser: Host + "getGitUser",
   getComment: Host + "getComment",
-  addComment: Host + "addComment"
+  addComment: Host + "addComment",
+  addReplay: Host + "addReplay",
+  findComment: Host + "findComment"
 };
 // 定义请求类型
 class Service {
@@ -62,13 +64,20 @@ export class AppService {
   getGit(id: string) {
     return this.http.post<Service>(addr.gitUser, qs.stringify({ id }), httpOptions)
   }
-  getComment(pageindex: number) {
+  getComment(pageindex: number, contentId: any) {
     return this.http.post<Service>(addr.getComment, qs.stringify({
-      pageSize: 10,
+      pageSize: 5,
       pageindex,
+      contentId,
     }), httpOptions)
   }
   addComment(para: any) {
     return this.http.post<Service>(addr.addComment, qs.stringify({ ...para }), httpOptions)
+  }
+  addReplay(para: any) {
+    return this.http.post<Service>(addr.addReplay, qs.stringify({ ...para }), httpOptions)
+  }
+  findComment(id: any) {
+    return this.http.post<Service>(addr.findComment, qs.stringify({ id }), httpOptions)
   }
 }
