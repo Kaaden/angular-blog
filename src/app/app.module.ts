@@ -22,7 +22,8 @@ import { PageLoginComponent } from './app-page/page-login/page-login.component';
 //配置antd
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { EditorComponent } from './app-component/editor/editor.component'
 @NgModule({
   declarations: [
     HeadBgComponent,
@@ -36,6 +37,7 @@ import { FormsModule } from '@angular/forms'
     AboutComponent,
     PageDetailComponent,
     PageLoginComponent,
+    EditorComponent,
   ],
   imports: [
     BrowserModule,

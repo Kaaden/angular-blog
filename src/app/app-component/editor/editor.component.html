@@ -1,0 +1,16 @@
+<div class="commit-input-right"  *ngIf="show" [ngClass]="{true:'commit-input-replay'}[isShow]">
+  <input nz-input placeholder="说点什么..." [(ngModel)]="value" [nzSize]="large" />
+  <div class="commit-fun">
+    <i (click)="doEmoji()" nz-icon nzType="smile" nzTheme="outline" nz-popover [nzContent]="icon"
+      [(nzVisible)]="visible" nzTrigger="click" style="flex-shrink:0;font-size:0.2rem;color:#8a9aa9"></i>
+    <button nz-button nzType="primary" (click)="submit()" [nzLoading]="loading">评论</button>
+
+
+  </div>
+</div>
+
+<ng-template #icon>
+  <ul class="emoji">
+    <li *ngFor="let item of emojiArray" (click)="emojiClick(item)">{{item}}</li>
+  </ul>
+</ng-template>

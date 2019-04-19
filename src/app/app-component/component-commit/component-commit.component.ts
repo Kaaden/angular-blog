@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from "../../app-services"
 import { NzMessageService } from 'ng-zorro-antd';
-import emoji from "../../emoji";
+
 @Component({
     selector: 'app-component-commit',
     templateUrl: './component-commit.component.html',
@@ -11,9 +11,6 @@ export class commitComponent implements OnInit {
     gitId: string = ""
     gitUser: any = ""
     interId: any = ""
-    value: string = ""
-    visible: boolean = false
-    emojiArray: Array<string> = []
     pageindex: number = 1
     comment: Array<any> = []
     contentId: string = ""
@@ -22,9 +19,7 @@ export class commitComponent implements OnInit {
     subLoadingItem: boolean = false
     hasMore: boolean = true
     replayIndex: number = 0
-    replayValue: string = ""
     newReIndex: number = 0
-    newValue: string = ""
     newReId: any = ""
     constructor(
         private service: AppService,
@@ -38,7 +33,6 @@ export class commitComponent implements OnInit {
         }
         this.contentId = contentId
         this.getUserId()
-        this.emojiDo()
         this.getComment(false)
     }
 
@@ -46,26 +40,13 @@ export class commitComponent implements OnInit {
         clearInterval(this.interId)
     }
 
-    showEmoji(): void {
-        this.visible = true
-    }
 
-    // 表情处理
-    emojiDo(): void {
-        this.emojiArray = Object.keys(emoji.EMOJI_MAP)
-    }
 
-    emojiClick(item): void {
-        if (!this.replayIndex) {
-            this.value = this.value + item
-        } else {
-            this.replayValue = this.replayValue + item
-        }
-        this.visible = false
-    }
+  
     // 提交评论
-    submit(): void {
-        if (!this.value) {
+    submit(data:any): void {
+
+        if (!data.value) {
             return
         }
         this.subLoading = true
@@ -75,7 +56,7 @@ export class commitComponent implements OnInit {
             name: user.name,
             avatar: user.avatar_url,
             contentId: this.contentId,
-            text: this.value
+            text: data.value
         }
         this.service.addComment(para).subscribe(
             (data) => {
@@ -84,7 +65,7 @@ export class commitComponent implements OnInit {
                     this.message.error("提交失败")
                     return
                 }
-                this.value = ""
+
                 this.pageindex = 1
                 this.getComment(true)
             },
@@ -126,7 +107,6 @@ export class commitComponent implements OnInit {
         const index = i + 1
         if (index === this.replayIndex) {
             this.replayIndex = 0
-            this.replayValue = ""
         } else {
             this.replayIndex = index
         }
@@ -137,7 +117,6 @@ export class commitComponent implements OnInit {
         if (index === this.newReIndex) {
             this.newReIndex = 0
             this.newReId = ""
-            this.newValue = ""
         }
         else {
             this.newReIndex = index
@@ -147,17 +126,15 @@ export class commitComponent implements OnInit {
     onNewBlur() {
         this.newReIndex = 0
         this.newReId = ""
-        this.newValue = ""
     }
 
     onblur(): void {
         this.replayIndex = 0
-        this.replayValue = ""
     }
 
     // 回评提交
-    replaySubmit(item: any): void {
-        if (!this.replayValue) {
+    replaySubmit(data:any): void {
+        if (!data.value || !data.item) {
             return
         }
         this.subLoadingItem = true
@@ -165,28 +142,29 @@ export class commitComponent implements OnInit {
         let para = {
             comment_name: user.name,
             comment_avatar: user.avatar_url,
-            comment_text: this.replayValue,
-            replay_id: item.userid,
-            replay_name: item.name,
-            comment_id: item.id,
+            comment_text: data.value,
+
+            replay_id: data.item.userid,
+            replay_name: data.item.name,
+            comment_id: data.item.id,
             comment_userid: user.id
         }
         this.getReplay(para)
 
     }
-    newSubmit(item): void {
-        if (!this.newValue) {
+    newSubmit(data:any): void {
+        if (!data.value||!data.item) {
             return
         }
         const user = this.gitUser
         let para = {
             comment_name: user.name,
             comment_avatar: user.avatar_url,
-            comment_text: this.newValue,
+            comment_text: data.value,
 
-            replay_id: item.comment_userid,
-            replay_name: item.comment_name,
-            comment_id: item.comment_id,
+            replay_id: data.item.comment_userid,
+            replay_name: data.item.comment_name,
+            comment_id: data.item.comment_id,
 
             comment_userid: user.id
         }
@@ -201,14 +179,12 @@ export class commitComponent implements OnInit {
                     this.message.error("提交失败")
                     return
                 }
-                this.replayValue = ""
                 this.replayIndex = 0
                 this.newReIndex = 0
-                this.newValue = ""
                 this.service.findComment(para.comment_id).subscribe((data) => {
                     if (data.isok) {
                         let index = this.comment.findIndex(f => f.id === data.data.id)
-                        if (index !== 0) {
+                        if (index !== -1) {
                             this.comment[index] = data.data
                         }
                     }

@@ -5,16 +5,11 @@
         <nz-avatar style="flex-shrink:0;margin-right:.2rem" nz-comment-avatar nzIcon="user" [nzSize]="40"
             [nzSrc]="gitUser.avatar_url">
         </nz-avatar>
-        <div class="commit-input-right">
-            <input nz-input placeholder="说点什么..." [(ngModel)]="value" [nzSize]="large" />
-
-            <div class="commit-fun">
-                <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible&&!replayIndex"
-                    nzTrigger="click" nz-icon nzType="smile" nzTheme="outline"
-                    style="flex-shrink:0;font-size:0.24rem;color:#8a9aa9"></i>
-                <button nz-button nzType="primary" (click)="submit()" [nzLoading]="subLoading">评论</button>
-            </div>
-        </div>
+        <app-editor style="width:100%" [loading]="subLoading" [isShow]="false" [show]="true"
+            (doSubmit)="submit($event)"></app-editor>
+        <!-- <div class="commit-input-right">
+            <app-editor [loading]="subLoading" (doSubmit)="submit($event)" ></app-editor>
+        </div> -->
     </div>
 
     <div class="commit-list" *ngIf="comment.length">
@@ -26,6 +21,7 @@
                     <span class="commit-item-name" (click)="onblur()">{{item.name}} <span class="commit-item-time"
                             (click)="onblur()">{{item.time}}</span></span>
                     <span class="commit-item-text" (click)="onblur()">{{item.text}}</span>
+
                     <!-- 点赞 -->
                     <div class="commit-item-func">
                         <div class="commit-item-func-right">
@@ -36,18 +32,11 @@
                         <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer"
                             (click)="showReplay(i)"></i>
                     </div>
-                    <!-- 输入框 -->
-                    <div class="commit-input-right commit-input-replay" *ngIf="replayIndex===i+1">
-                        <input nz-input placeholder="说点什么..." [(ngModel)]="replayValue" [nzSize]="small" autofocus />
 
-                        <div class="commit-fun">
-                            <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible"
-                                nzTrigger="click" nz-icon nzType="smile" nzTheme="outline"
-                                style="flex-shrink:0;font-size:0.18rem;color:#8a9aa9"></i>
-                            <button nz-button nzType="primary" (click)="replaySubmit(item)" [nzLoading]="subLoadingItem"
-                                [nzSize]="small">评论</button>
-                        </div>
-                    </div>
+                    <!-- 输入框 -->
+                    <app-editor [loading]="subLoadingItem" [isShow]="true" [show]="replayIndex===i+1?true:false"
+                        [itemBody]="item" (doSubmit)="replaySubmit($event,item)"></app-editor>
+
 
 
                     <!-- 回评 -->
@@ -70,20 +59,10 @@
                                     <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer"
                                         (click)="showNewRe(j,item.id)"></i>
                                 </div>
+                                <app-editor [loading]="subLoadingItem" [isShow]="true" [itemBody]="r"
+                                    (doSubmit)="newSubmit($event,item)"
+                                    [show]="r.comment_id===newReId&&newReIndex===j+1?true:false"></app-editor>
 
-                                <div class="commit-input-right commit-input-replay" style="background:#fafbfc"
-                                    *ngIf="r.comment_id===newReId&&newReIndex===j+1">
-                                    <input nz-input placeholder="说点什么..." [(ngModel)]="newValue" [nzSize]="small"
-                                        autofocus />
-
-                                    <div class="commit-fun">
-                                        <i (onclick)="showEmoji()" nz-popover [nzContent]="icon" [(nzVisible)]="visible"
-                                            nzTrigger="click" nz-icon nzType="smile" nzTheme="outline"
-                                            style="flex-shrink:0;font-size:0.18rem;color:#8a9aa9"></i>
-                                        <button nz-button nzType="primary" (click)="newSubmit(r)"
-                                            [nzLoading]="subLoadingItem" [nzSize]="small">评论</button>
-                                    </div>
-                                </div>
 
                             </div>
 
@@ -106,9 +85,5 @@
 
     </div>
 </div>
-<ng-template #icon>
-    <ul class="emoji">
-        <li *ngFor="let item of emojiArray" (click)="emojiClick(item)">{{item}}</li>
-    </ul>
-</ng-template>
+
 <ng-template #indicatorTemplate><i nz-icon type="loading" style="font-size: 24px;"></i> </ng-template>
