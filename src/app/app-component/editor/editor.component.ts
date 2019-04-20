@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input,HostListener } from '@angular/core';
 import { AppService } from "../../app-services"
 import emoji from "../../emoji";
 import { NzMessageService } from 'ng-zorro-antd';
@@ -128,5 +128,8 @@ export class EditorComponent implements OnInit {
         this.loading = false
       })
   }
-
+  @HostListener("window:click", ["$event"])
+    DoClick(e){
+        console.log(this)
+    }
 }

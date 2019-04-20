@@ -7,9 +7,7 @@
         </nz-avatar>
         <app-editor style="width:100%" [isShow]="false" [commentType]="'self'" [user]="gitUser"
             (comment)="getComment($event)"></app-editor>
-        <!-- <div class="commit-input-right">
-            <app-editor [loading]="subLoading" (doSubmit)="submit($event)" ></app-editor>
-        </div> -->
+    
     </div>
 
     <div class="commit-list" *ngIf="comment.length">
@@ -22,16 +20,7 @@
                             class="commit-item-time">{{item.time}}</span></span>
                     <span class="commit-item-text">{{item.text}}</span>
 
-                    <!-- 点赞 -->
-                    <!-- <div class="commit-item-func">
-                        <div class="commit-item-func-right">
-                            <i nz-icon nzType="like" nzTheme="outline" style="cursor: pointer"></i>
-                            <span style="margin-left:.1rem" *ngIf="item.dzcount">{{item.dzcount}}</span>
-                        </div>
-
-                        <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer"
-                            (click)="showReplay(i)"></i>
-                    </div> -->
+                  
 
                     <!-- 输入框 -->
                     <app-editor [isShow]="true" [itemBody]="item" [commentType]="'first'" [user]="gitUser"
@@ -50,15 +39,7 @@
                                 <span class="commit-item-text">{{r.comment_text}}</span>
 
 
-                                <!-- <div class="commit-item-func">
-                                    <div class="commit-item-func-right">
-                                        <i nz-icon nzType="like" nzTheme="outline" style="cursor: pointer"></i>
-                                        <span style="margin-left:.1rem" *ngIf="item.dzcount">{{r.dzcount}}</span>
-                                    </div>
 
-                                    <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer"
-                                        (click)="showNewRe(j,item.id)"></i>
-                                </div> -->
                                 <app-editor [isShow]="true" [itemBody]="r" [commentType]="'second'" [user]="gitUser"
                                     (comment)="commontChange($event)"></app-editor>
 
