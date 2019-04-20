@@ -40,43 +40,145 @@ export class commitComponent implements OnInit {
         clearInterval(this.interId)
     }
 
+    // // 提交评论
+    // submit(data: any): void {
+
+    //     if (!data.value) {
+    //         return
+    //     }
+    //     this.subLoading = true
+    //     let user = this.gitUser
+    //     let para = {
+    //         userid: user.id,
+    //         name: user.name,
+    //         avatar: user.avatar_url,
+    //         contentId: this.contentId,
+    //         text: data.value
+    //     }
+    //     this.service.addComment(para).subscribe(
+    //         (data) => {
+    //             this.subLoading = false
+    //             if (!data.isok) {
+    //                 this.message.error("提交失败")
+    //                 return
+    //             }
+
+    //             this.pageindex = 1
+    //             this.getComment(true)
+    //         },
+    //         (error: Error) => {
+    //             this.subLoading = false
+    //         })
+    // }
+    //  // 回评提交
+    //  replaySubmit(data: any): void {
+    //     if (!data.value || !data.item) {
+    //         return
+    //     }
+    //     this.subLoadingItem = true
+    //     const user = this.gitUser
+    //     let para = {
+    //         comment_name: user.name,
+    //         comment_avatar: user.avatar_url,
+    //         comment_text: data.value,
+
+    //         replay_id: data.item.userid,
+    //         replay_name: data.item.name,
+    //         comment_id: data.item.id,
+    //         comment_userid: user.id
+    //     }
+    //     this.getReplay(para)
+
+    // }
+    // newSubmit(data: any): void {
+    //     if (!data.value || !data.item) {
+    //         return
+    //     }
+    //     const user = this.gitUser
+    //     let para = {
+    //         comment_name: user.name,
+    //         comment_avatar: user.avatar_url,
+    //         comment_text: data.value,
+
+    //         replay_id: data.item.comment_userid,
+    //         replay_name: data.item.comment_name,
+    //         comment_id: data.item.comment_id,
+
+    //         comment_userid: user.id
+    //     }
+    //     this.getReplay(para)
+    // }
+    // 回评
+    // showReplay(i: number): void {
+    //     const index = i + 1
+    //     if (index === this.replayIndex) {
+    //         this.replayIndex = 0
+    //     } else {
+    //         this.replayIndex = index
+    //     }
+    // }
+    // showNewRe(i: number, selId): void {
+    //     const index = i + 1
+    //     if (index === this.newReIndex) {
+    //         this.newReIndex = 0
+    //         this.newReId = ""
+    //     }
+    //     else {
+    //         this.newReIndex = index
+    //         this.newReId = selId
+    //     }
+    // }
+    // onNewBlur() {
+    //     this.newReIndex = 0
+    //     this.newReId = ""
+    // }
+
+    // onblur(): void {
+    //     this.replayIndex = 0
+    // }
 
 
-  
-    // 提交评论
-    submit(data:any): void {
-
-        if (!data.value) {
-            return
-        }
-        this.subLoading = true
-        let user = this.gitUser
-        let para = {
-            userid: user.id,
-            name: user.name,
-            avatar: user.avatar_url,
-            contentId: this.contentId,
-            text: data.value
-        }
-        this.service.addComment(para).subscribe(
-            (data) => {
-                this.subLoading = false
-                if (!data.isok) {
-                    this.message.error("提交失败")
-                    return
+    // 回评请求
+    // getReplay(para: any): void {
+    //     this.service.addReplay(para).subscribe(
+    //         (data) => {
+    //             this.subLoadingItem = false
+    //             if (!data.isok) {
+    //                 this.message.error("提交失败")
+    //                 return
+    //             }
+    //             this.replayIndex = 0
+    //             this.newReIndex = 0
+    //             this.service.findComment(para.comment_id).subscribe((data) => {
+    //                 if (data.isok) {
+    //                     let index = this.comment.findIndex(f => f.id === data.data.id)
+    //                     if (index !== -1) {
+    //                         this.comment[index] = data.data
+    //                     }
+    //                 }
+    //             })
+    //         },
+    //         (error: Error) => {
+    //             this.subLoadingItem = false
+    //         })
+    // }
+    commontChange(id: any): void {
+        this.service.findComment(id).subscribe((data) => {
+            if (data.isok) {
+                let index = this.comment.findIndex(f => f.id === data.data.id)
+                if (index !== -1) {
+                    this.comment[index] = data.data
                 }
-
-                this.pageindex = 1
-                this.getComment(true)
-            },
-            (error: Error) => {
-                this.subLoading = false
-            })
+            }
+        })
     }
 
     // 获取评论列表
     getComment(isFresh: boolean): void {
         this.loading = true
+        if (isFresh) {
+            this.pageindex = 1
+        }
         this.service.getComment(this.pageindex, this.contentId).subscribe(
             (data) => {
                 this.hasMore = data.isok
@@ -98,101 +200,8 @@ export class commitComponent implements OnInit {
     // 加载更多
     fetchMore(): void {
         this.pageindex = this.pageindex + 1
-        this.onblur()
+        // this.onblur()
         this.getComment(false)
-    }
-    // 回评
-    showReplay(i: number): void {
-        this.onNewBlur()
-        const index = i + 1
-        if (index === this.replayIndex) {
-            this.replayIndex = 0
-        } else {
-            this.replayIndex = index
-        }
-    }
-    showNewRe(i: number, selId): void {
-        this.onblur()
-        const index = i + 1
-        if (index === this.newReIndex) {
-            this.newReIndex = 0
-            this.newReId = ""
-        }
-        else {
-            this.newReIndex = index
-            this.newReId = selId
-        }
-    }
-    onNewBlur() {
-        this.newReIndex = 0
-        this.newReId = ""
-    }
-
-    onblur(): void {
-        this.replayIndex = 0
-    }
-
-    // 回评提交
-    replaySubmit(data:any): void {
-        if (!data.value || !data.item) {
-            return
-        }
-        this.subLoadingItem = true
-        const user = this.gitUser
-        let para = {
-            comment_name: user.name,
-            comment_avatar: user.avatar_url,
-            comment_text: data.value,
-
-            replay_id: data.item.userid,
-            replay_name: data.item.name,
-            comment_id: data.item.id,
-            comment_userid: user.id
-        }
-        this.getReplay(para)
-
-    }
-    newSubmit(data:any): void {
-        if (!data.value||!data.item) {
-            return
-        }
-        const user = this.gitUser
-        let para = {
-            comment_name: user.name,
-            comment_avatar: user.avatar_url,
-            comment_text: data.value,
-
-            replay_id: data.item.comment_userid,
-            replay_name: data.item.comment_name,
-            comment_id: data.item.comment_id,
-
-            comment_userid: user.id
-        }
-        this.getReplay(para)
-    }
-    // 回评请求
-    getReplay(para: any): void {
-        this.service.addReplay(para).subscribe(
-            (data) => {
-                this.subLoadingItem = false
-                if (!data.isok) {
-                    this.message.error("提交失败")
-                    return
-                }
-                this.replayIndex = 0
-                this.newReIndex = 0
-                this.service.findComment(para.comment_id).subscribe((data) => {
-                    if (data.isok) {
-                        let index = this.comment.findIndex(f => f.id === data.data.id)
-                        if (index !== -1) {
-                            this.comment[index] = data.data
-                        }
-                    }
-                })
-            },
-            (error: Error) => {
-                this.subLoadingItem = false
-            })
     }
 
     //登陆
