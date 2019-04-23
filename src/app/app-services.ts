@@ -22,7 +22,9 @@ const addr = {
   getComment: Host + "getComment",
   addComment: Host + "addComment",
   addReplay: Host + "addReplay",
-  findComment: Host + "findComment"
+  findComment: Host + "findComment",
+  changeDz: Host + "changeDz",
+  findDzCount: Host + "findDzCount"
 };
 // 定义请求类型
 class Service {
@@ -79,5 +81,11 @@ export class AppService {
   }
   findComment(id: any) {
     return this.http.post<Service>(addr.findComment, qs.stringify({ id }), httpOptions)
+  }
+  changeDz(para: any) {
+    return this.http.post<Service>(addr.changeDz, qs.stringify({ ...para }), httpOptions)
+  }
+  findDzCount(para: any) {
+    return this.http.post<Service>(addr.findDzCount, qs.stringify({ ...para }), httpOptions)
   }
 }

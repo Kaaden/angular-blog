@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input,HostListener } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AppService } from "../../app-services"
 import emoji from "../../emoji";
 import { NzMessageService } from 'ng-zorro-antd';
@@ -13,19 +13,32 @@ export class EditorComponent implements OnInit {
   loading: boolean = false
   emojiArray: Array<string> = []
   value: string = ""
-  // @Input() show
+  isDz: boolean = false
   @Input() isShow;
   @Input() itemBody
   @Input() commentType
   @Input() user
-  // @Input() loading
   @Output() comment = new EventEmitter<any>();
+  @Output() changeDz = new EventEmitter<any>();
   constructor(
     private service: AppService,
     private message: NzMessageService
   ) { }
 
   ngOnInit() {
+    const item = this.itemBody
+    if (item && item.dzuserid) {
+      let dzlist
+      try {
+        dzlist = item.dzuserid.join(",")
+      } catch (err) {
+        dzlist = [item.dzuserid]
+      }
+      const index = dzlist.findIndex(f => f === `${this.user.id}`)
+      if (index !== -1) {
+        this.isDz = true
+      }
+    }
     this.emojiDo()
   }
 
@@ -43,13 +56,13 @@ export class EditorComponent implements OnInit {
   }
   // 提交
   submit(): void {
-    let contentId = window.sessionStorage.getItem("contentId")
+    const contentId = window.sessionStorage.getItem("contentId")
     if (!contentId) {
       return
     }
     const { value, commentType, itemBody, user } = this
 
-    let para = {
+    const para = {
       "self": {
         userid: user.id,
         name: user.name,
@@ -78,7 +91,7 @@ export class EditorComponent implements OnInit {
         comment_userid: user.id
       }
     }
-    let item = para[commentType]
+    const item = para[commentType]
     if (item) {
       this.loading = true
       if (commentType === "self") {
@@ -128,8 +141,24 @@ export class EditorComponent implements OnInit {
         this.loading = false
       })
   }
-  @HostListener("window:click", ["$event"])
-    DoClick(e){
-        console.log(this)
+  Dodz() {
+    this.isDz = !this.isDz
+    const { commentType, itemBody, user } = this
+    const para = {
+      id: itemBody.id,
+      type: commentType === "first" ? "comment" : "comment_re",
+      hasDz: this.isDz ? 1 : 0,
+      userid: user.id
     }
+    console.log(itemBody)
+    this.service.changeDz(para).subscribe(
+      (data) => {
+        if (data.isok) {
+          this.changeDz.emit({ id: itemBody.id, type: para.type })
+        }
+      },
+      (error: Error) => {
+        console.log(error)
+      })
+  }
 }

@@ -1,8 +1,9 @@
 <!-- 点赞 -->
 <div class="commit-item-func" *ngIf="isShow">
   <div class="commit-item-func-right">
-    <i nz-icon nzType="like" nzTheme="outline" style="cursor: pointer"></i>
-    <span style="margin-left:.1rem" *ngIf="itemBody.dzcount">{{itemBody.dzcount}}</span>
+    <i nz-icon nzType="like" nzTheme="outline" style="cursor: pointer" (click)="Dodz()"
+      [ngClass]="{true:'commit-dz'}[isDz]"></i>
+    <span style="margin-left:.1rem" *ngIf="itemBody.dzcount"  [ngClass]="{true:'commit-dz'}[isDz]">{{itemBody.dzcount}}</span>
   </div>
 
   <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer" (click)="showReplay(i)"></i>

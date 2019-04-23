@@ -24,7 +24,7 @@
 
                     <!-- 输入框 -->
                     <app-editor [isShow]="true" [itemBody]="item" [commentType]="'first'" [user]="gitUser"
-                        (comment)="commontChange($event)"></app-editor>
+                        (comment)="commontChange($event)" (changeDz)="changeDzCount($event)"></app-editor>
 
 
 
@@ -41,7 +41,7 @@
 
 
                                 <app-editor [isShow]="true" [itemBody]="r" [commentType]="'second'" [user]="gitUser"
-                                    (comment)="commontChange($event)"></app-editor>
+                                    (comment)="commontChange($event)" (changeDz)="changeDzCount($event)"></app-editor>
 
 
                             </div>
