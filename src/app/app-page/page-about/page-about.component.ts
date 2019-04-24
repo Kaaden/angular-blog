@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from "../../app-services";
+
 @Component({
   selector: 'app-page-about',
   templateUrl: './page-about.component.html',
@@ -29,7 +30,6 @@ export class AboutComponent implements OnInit {
   findImg() {
     this.service.findImg().subscribe(
       (data) => {
-        console.log(data)
         if (data.isok) {
           this.imglist = data.data
         }
@@ -39,7 +39,5 @@ export class AboutComponent implements OnInit {
       }
     )
   }
-  loadImg(e){
-    console.log(e)
-  }
+
 }

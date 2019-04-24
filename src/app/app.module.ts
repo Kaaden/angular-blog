@@ -48,7 +48,7 @@ import { ComponentFooterComponent } from './app-component/component-footer/compo
     NgZorroAntdModule,
     BrowserAnimationsModule,
     ScrollDispatchModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
