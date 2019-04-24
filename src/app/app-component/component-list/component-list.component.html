@@ -3,8 +3,8 @@
 
     <li class="list-item" *ngFor="let item of list" (click)="goDetail(item.id)">
       <div class="list-item-content">
-        <span class="list-item-title line line1">{{ item.title }}</span>
-        <p class="line line2">{{ item.description }}</p>
+        <span class="list-item-title line line1"  style="-webkit-box-orient: vertical;">{{ item.title }}</span>
+        <div class="line line2 list-item-txt" style="-webkit-box-orient: vertical;">{{ item.description }}</div>
         <div class="list-item-orther">
           <nz-tag [nzColor]="'blue'" style="margin:0">{{ item.category }}</nz-tag>
           <nz-divider nzType="vertical"></nz-divider>
