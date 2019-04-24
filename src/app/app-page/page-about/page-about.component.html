@@ -1,8 +1,13 @@
 <div class="contain">
-    <app-component-head></app-component-head>
-    <div class="contain-main">
-      <app-component-list style="width: 70%"></app-component-list>
-      <app-component-user style="width:20%;margin-left: 1rem"></app-component-user>
+  <app-component-head></app-component-head>
+  <div class="contain-main">
+    <div style="width: 70%">
+
+      <nz-skeleton [nzActive]="true" [nzLoading]="!user">
+        <div class="desc">{{user.description}}</div>
+        <div class="content">{{user.content}}</div>
+      </nz-skeleton>
     </div>
+    <app-component-user style="width:20%;margin-left: 1rem"></app-component-user>
   </div>
-  
+</div>
