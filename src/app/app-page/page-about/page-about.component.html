@@ -6,8 +6,18 @@
       <nz-skeleton [nzActive]="true" [nzLoading]="!user">
         <div class="desc">{{user.description}}</div>
         <div class="content">{{user.content}}</div>
+
+        <div class="desc">知道凌晨4点的广州是什么样子吗？</div>
+        <div class="wrap">
+          <div class="wrap-item" *ngFor="let item of imglist">
+            <img src="{{item.img}}" (onload)="loadImg()">
+          </div>
+
+
+        </div>
       </nz-skeleton>
     </div>
     <app-component-user style="width:20%;margin-left: 1rem"></app-component-user>
   </div>
+  <app-component-footer></app-component-footer>
 </div>

@@ -25,7 +25,8 @@ const addr = {
   findComment: Host + "findComment",
   changeDz: Host + "changeDz",
   findDzCount: Host + "findDzCount",
-  updateView: Host + "updateView"
+  updateView: Host + "updateView",
+  findImg: Host + "findImg"
 };
 // 定义请求类型
 class Service {
@@ -91,5 +92,8 @@ export class AppService {
   }
   updateView() {
     return this.http.post<Service>(addr.updateView, null, httpOptions)
+  }
+  findImg() {
+    return this.http.post<Service>(addr.findImg, null, httpOptions)
   }
 }

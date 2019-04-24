@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppService } from "../../app-services";
 @Component({
   selector: 'app-page-about',
   templateUrl: './page-about.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
   user: any = ""
-  constructor() { }
+  imglist: Array<any> = []
+  constructor(private service: AppService) { }
 
   ngOnInit() {
+    this.findImg()
     this.getUser()
   }
 
@@ -24,5 +26,20 @@ export class AboutComponent implements OnInit {
       }
     }, 100)
   }
-
+  findImg() {
+    this.service.findImg().subscribe(
+      (data) => {
+        console.log(data)
+        if (data.isok) {
+          this.imglist = data.data
+        }
+      },
+      (error: Error) => {
+        console.log(error)
+      }
+    )
+  }
+  loadImg(e){
+    console.log(e)
+  }
 }

@@ -28,7 +28,7 @@
   </div>
 
 
-  <div class="syno-user">
+  <div class="syno-user" *ngIf="isShow">
     <div class="syno-tag"><i nz-icon nzType="fire" nzTheme="outline" style="margin-right:0.2rem"></i>访问量</div>
     <div class="syno-tag-item" style="margin-bottom:0.1rem">
       <nz-statistic [nzValue]="User.pageview" ></nz-statistic>

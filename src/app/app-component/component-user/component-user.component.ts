@@ -9,9 +9,13 @@ export class UserComponent implements OnInit {
   list: string[] = [];
   User: any = "";
   loading: boolean = true;
+  isShow: boolean = true
   constructor(private appService: AppService) { }
 
   ngOnInit() {
+    if (window.location.hash.includes("about")) {
+      this.isShow = false
+    }
     window.onbeforeunload = function (event) {
       window.sessionStorage.clear()
     }

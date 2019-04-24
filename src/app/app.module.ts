@@ -23,7 +23,8 @@ import { PageLoginComponent } from './app-page/page-login/page-login.component';
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from '@angular/forms';
-import { EditorComponent } from './app-component/editor/editor.component'
+import { EditorComponent } from './app-component/editor/editor.component';
+import { ComponentFooterComponent } from './app-component/component-footer/component-footer.component'
 @NgModule({
   declarations: [
     HeadBgComponent,
@@ -38,6 +39,7 @@ import { EditorComponent } from './app-component/editor/editor.component'
     PageDetailComponent,
     PageLoginComponent,
     EditorComponent,
+    ComponentFooterComponent,
   ],
   imports: [
     BrowserModule,
