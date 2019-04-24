@@ -24,7 +24,8 @@ const addr = {
   addReplay: Host + "addReplay",
   findComment: Host + "findComment",
   changeDz: Host + "changeDz",
-  findDzCount: Host + "findDzCount"
+  findDzCount: Host + "findDzCount",
+  updateView: Host + "updateView"
 };
 // 定义请求类型
 class Service {
@@ -87,5 +88,8 @@ export class AppService {
   }
   findDzCount(para: any) {
     return this.http.post<Service>(addr.findDzCount, qs.stringify({ ...para }), httpOptions)
+  }
+  updateView() {
+    return this.http.post<Service>(addr.updateView, null, httpOptions)
   }
 }

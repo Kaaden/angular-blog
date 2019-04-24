@@ -20,6 +20,22 @@
     </div>
   </div>
 
+  <div class="syno-user">
+    <div class="syno-tag"><i nz-icon nzType="tag" nzTheme="outline" style="margin-right:0.2rem"></i>标签</div>
+    <div class="syno-tag-item">
+      <nz-tag [nzColor]="'#108ee9'" style="margin-bottom:0.1rem" *ngFor="let item of list">{{item.tag}}</nz-tag>
+    </div>
+  </div>
+
+
+  <div class="syno-user">
+    <div class="syno-tag"><i nz-icon nzType="fire" nzTheme="outline" style="margin-right:0.2rem"></i>访问量</div>
+    <div class="syno-tag-item" style="margin-bottom:0.1rem">
+      <nz-statistic [nzValue]="User.pageview" ></nz-statistic>
+    </div>
+  </div>
+
+
 
 
 </div>
