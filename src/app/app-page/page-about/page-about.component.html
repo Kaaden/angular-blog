@@ -7,10 +7,10 @@
         <div class="desc">{{user.description}}</div>
         <div class="content">{{user.content}}</div>
 
-        <div class="desc">知道凌晨4点的广州是什么样子吗？</div>
+        <div class="desc">{{user.dec}}</div>
         <div class="wrap">
           <div class="wrap-item" *ngFor="let item of imglist">
-            <img src="{{item.img}}">
+            <img src="../../../assets/pic.png" data-src="{{item.img}}" (error)="onError($event)">
           </div>
 
 

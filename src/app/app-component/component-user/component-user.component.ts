@@ -28,6 +28,7 @@ export class UserComponent implements OnInit {
       data => {
         if (data.isok) {
           this.list = data.data;
+          window.sessionStorage.setItem("tags", JSON.stringify(data.data))
         }
       },
       (error: Error) => {
@@ -56,6 +57,8 @@ export class UserComponent implements OnInit {
       }
     );
   }
-
+  onError(e) {
+    e.target.src = "../../../assets/pic.png"
+  }
 
 }

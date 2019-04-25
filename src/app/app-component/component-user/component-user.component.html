@@ -1,6 +1,6 @@
 <div class="syno">
   <div class="syno-user">
-    <img src="{{User.logo}}" />
+    <img src="../../../assets/pic.png" data-src="{{User.logo}}" (error)="onError($event)">
     <div class="syno-main">
       <div class="syno-user-name">{{User.user}}</div>
       <div class="syno-user-desc">{{User.description}}</div>

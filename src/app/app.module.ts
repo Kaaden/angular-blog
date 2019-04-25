@@ -13,6 +13,8 @@ import { ListComponent } from "./app-component/component-list/component-list.com
 import { NavgatorComponent } from "./app-component/component-nav/component-nav.component";
 import { UserComponent } from "./app-component/component-user/component-user.component";
 import { commitComponent } from "./app-component/component-commit/component-commit.component";
+import { EditorComponent } from './app-component/editor/editor.component';
+import { ComponentFooterComponent } from './app-component/component-footer/component-footer.component';
 //Page
 import { HomeComponent } from "./app-page/page-home/page-home.component";
 import { AboutComponent } from "./app-page/page-about/page-about.component";
@@ -23,8 +25,6 @@ import { PageLoginComponent } from './app-page/page-login/page-login.component';
 import { NgZorroAntdModule } from "ng-zorro-antd";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from '@angular/forms';
-import { EditorComponent } from './app-component/editor/editor.component';
-import { ComponentFooterComponent } from './app-component/component-footer/component-footer.component'
 @NgModule({
   declarations: [
     HeadBgComponent,

@@ -13,7 +13,7 @@
           <span>{{ item.time }}</span>
         </div>
       </div>
-      <img src="{{ item.img }}" />
+      <img src="../../../assets/pic.png" data-src="{{item.img}}" (error)="onError($event)">
     </li>
   </nz-skeleton>
 

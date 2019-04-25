@@ -22,12 +22,14 @@ export class ListComponent implements OnInit {
     this.getContent(this.page);
   }
 
-  goDetail(id:number): void {
+  goDetail(id: number): void {
     this.router.navigate(["detail"], {
-      queryParams: {id}
+      queryParams: { id }
     })
   }
-  
+  onError(e) {
+    e.target.src = "../../../assets/pic.png"
+  }
   getContent(page: number): void {
     this.appService.getContent(page).subscribe(
       data => {

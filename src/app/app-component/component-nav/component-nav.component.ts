@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 })
 export class NavgatorComponent implements OnInit {
   isDon: boolean = false;
-  nav: string[] = ["HOME", "ABOUT", "TAG"];
+  nav: string[] = ["HOME", "ABOUT"];
   subscribeScoll: any;
   constructor(private router: Router) {}
 

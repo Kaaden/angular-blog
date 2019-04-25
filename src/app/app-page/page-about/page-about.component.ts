@@ -14,10 +14,11 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     this.findImg()
     this.getUser()
+
   }
 
   getUser() {
-    let that = this
+    const that = this
     const fetchUser = setInterval(() => {
       let user = window.sessionStorage.getItem("user")
       if (user) {
@@ -39,5 +40,9 @@ export class AboutComponent implements OnInit {
       }
     )
   }
+  onError(e) {
+    e.target.src = "../../../assets/pic.png"
+  }
+
 
 }

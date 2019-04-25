@@ -86,4 +86,5 @@ export class HeadBgComponent implements OnInit {
       bg
     };
   }
+
 }
