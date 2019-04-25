@@ -8,25 +8,25 @@ const httpOptions = {
     "Content-Type": "application/x-www-form-urlencoded"
   })
 };
-// const Host: string = "http://kaaden.orrzt.com:4000";
-const Host: string = "http://127.0.0.1:4000/"
+const HOST: string = "http://kaaden.orrzt.com:80/";
+// const Host: string = "http://127.0.0.1:4000/"
 const addr = {
-  bing: Host + "getBing",
-  config: Host + "getConfig",
-  content: Host + "getContent",
-  tag: Host + "getTags",
-  user: Host + "getUser",
-  detail: Host + "getDetail",
-  token: Host + "getToken_access",
-  gitUser: Host + "getGitUser",
-  getComment: Host + "getComment",
-  addComment: Host + "addComment",
-  addReplay: Host + "addReplay",
-  findComment: Host + "findComment",
-  changeDz: Host + "changeDz",
-  findDzCount: Host + "findDzCount",
-  updateView: Host + "updateView",
-  findImg: Host + "findImg"
+  bing: HOST + "getBing",
+  config: HOST + "getConfig",
+  content: HOST + "getContent",
+  tag: HOST + "getTags",
+  user: HOST + "getUser",
+  detail: HOST + "getDetail",
+  token: HOST + "getToken_access",
+  gitUser: HOST + "getGitUser",
+  getComment: HOST + "getComment",
+  addComment: HOST + "addComment",
+  addReplay: HOST + "addReplay",
+  findComment: HOST + "findComment",
+  changeDz: HOST + "changeDz",
+  findDzCount: HOST + "findDzCount",
+  updateView: HOST + "updateView",
+  findImg: HOST + "findImg"
 };
 // 定义请求类型
 class Service {
