@@ -61,7 +61,10 @@ export class EditorComponent implements OnInit {
       return
     }
     const { value, commentType, itemBody, user } = this
-
+    if (!user) {
+      this.message.error("请先登陆")
+      return
+    }
     const para = {
       "self": {
         userid: user.id,
@@ -105,6 +108,10 @@ export class EditorComponent implements OnInit {
   }
 
   showReplay(): void {
+    if (!this.user) {
+      this.message.error("请先登陆")
+      return
+    }
     this.visibleRe = !this.visibleRe
   }
 
@@ -142,15 +149,19 @@ export class EditorComponent implements OnInit {
       })
   }
   Dodz() {
-    this.isDz = !this.isDz
     const { commentType, itemBody, user } = this
+    if (!user) {
+      this.message.error("请先登陆")
+      return
+    }
+    this.isDz = !this.isDz
+    console.log(user)
     const para = {
       id: itemBody.id,
       type: commentType === "first" ? "comment" : "comment_re",
       hasDz: this.isDz ? 1 : 0,
       userid: user.id
     }
-    console.log(itemBody)
     this.service.changeDz(para).subscribe(
       (data) => {
         if (data.isok) {

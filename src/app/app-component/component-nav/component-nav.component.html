@@ -1,4 +1,4 @@
-<div class="nav" [ngClass]="{true:'nav-sel'}[isDon]">
+<div class="nav" [ngClass]="{'nav-sel':isDon}">
   <ul class="nav-right">
     <li *ngFor="let item of nav" (click)="goPath(item)">{{item}}</li>
   </ul>

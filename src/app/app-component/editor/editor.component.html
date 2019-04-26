@@ -2,15 +2,15 @@
 <div class="commit-item-func" *ngIf="isShow">
   <div class="commit-item-func-right">
     <i nz-icon nzType="like" nzTheme="outline" style="cursor: pointer" (click)="Dodz()"
-      [ngClass]="{true:'commit-dz'}[isDz]"></i>
-    <span style="margin-left:.1rem" *ngIf="itemBody.dzcount"  [ngClass]="{true:'commit-dz'}[isDz]">{{itemBody.dzcount}}</span>
+      [ngClass]="{'commit-dz':isDz}"></i>
+    <span style="margin-left:.1rem" *ngIf="itemBody.dzcount" [ngClass]="{'commit-dz':isDz}">{{itemBody.dzcount}}</span>
   </div>
 
   <i nz-icon nzType="message" nzTheme="outline" style="cursor: pointer" (click)="showReplay(i)"></i>
 </div>
 
 
-<div class="commit-input-right" *ngIf="visibleRe||!isShow" [ngClass]="{true:'commit-input-replay'}[isShow]">
+<div class="commit-input-right" *ngIf="visibleRe||!isShow" [ngClass]="{'commit-input-replay':isShow}">
   <input nz-input placeholder="说点什么..." [(ngModel)]="value" [nzSize]="large" />
   <div class="commit-fun">
     <i (click)="doEmoji()" nz-icon nzType="smile" nzTheme="outline" nz-popover [nzContent]="icon"

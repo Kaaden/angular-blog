@@ -28,13 +28,16 @@
               {
                 "glob": "**/*",
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
-                "output": "/assets/"
+                "output": "/public/client/assets/"
               }
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": [],
+            "baseHref": "/public/client/",
+            "deployUrl": "/public/client/",
             "es5BrowserSupport": true
           },
           "configurations": {
