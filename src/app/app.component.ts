@@ -1,12 +1,14 @@
 import { Component, HostListener,OnInit } from '@angular/core';
 import { AppService } from "./app-services";
+import { NzIconService } from "ng-zorro-antd";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService,private _iconService: NzIconService) {
+    this._iconService.changeAssetsSource('http://kaaden.orrzt.com/public/client');
     this.fontSize()
   }
   ngOnInit() {
